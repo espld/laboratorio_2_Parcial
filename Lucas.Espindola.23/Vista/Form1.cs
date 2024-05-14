@@ -21,32 +21,46 @@ namespace Vista
 
         private void btnAtender_Click(object sender, EventArgs e)
         {
-            if(this.lstMedicos.SelectedItem == null || this.lstPacientes.SelectedItem == null)
+            if (this.lstMedicos.SelectedItem == null || this.lstPacientes.SelectedItem == null)
             {
-                MessageBox.Show("Debe seleccionar un Médico y un Paciente para poder continuar.","Error en los datos",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar un Médico y un Paciente para poder continuar.", "Error en los datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-            {
-
-                foreach (Paciente item in this.lstPacientes.Items)
-                {
-                    Consulta consulta = new Consulta(DateTime.Now, item);
-                    consulta.Paciente.Diagnostico = "Paciente curado";
-                    MessageBox.Show(consulta.ToString(), "Atencion finalizada", MessageBoxButtons.OK);
-                }
+            {             
+                Consulta consulta = new Consulta(DateTime.Now, (Paciente)lstPacientes.SelectedItem);
+                consulta.Paciente.Diagnostico = "Paciente curado";
+                MessageBox.Show(consulta.ToString(), "Atencion finalizada", MessageBoxButtons.OK);
                 lstMedicos.SelectedItems.Clear();
                 lstPacientes.SelectedItems.Clear();
             }
         }
-        
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void FrmAtencion_FormClosing(object sender, FormClosingEventArgs e)
         {
+            DialogResult resultado = MessageBox.Show("Desea salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+            if(resultado == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void lstMedicos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            if(lstMedicos.SelectedItems != null)
+            {
+                foreach (PersonalMedico pm in lstMedicos.Items)
+                {
+                    rtbInfoMedico.Text = pm.FichaPersonal(pm);
+                }
+            }
+                
         }
     }
 }

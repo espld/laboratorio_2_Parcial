@@ -63,6 +63,7 @@
             lstMedicos.Name = "lstMedicos";
             lstMedicos.Size = new Size(276, 244);
             lstMedicos.TabIndex = 2;
+            lstMedicos.SelectedIndexChanged += lstMedicos_SelectedIndexChanged;
             // 
             // lstPacientes
             // 

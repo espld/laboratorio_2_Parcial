@@ -31,8 +31,6 @@ namespace Biblioteca
         {
             return $"{this.Fecha} se ha atentido a {this.Paciente.NombreCompleto}";
         }
-        }
-
-
+        
     }
 }
