@@ -52,15 +52,20 @@ namespace Vista
 
         private void lstMedicos_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-            if(lstMedicos.SelectedItems != null)
+
+            if (lstMedicos.SelectedItems != null)
             {
                 foreach (PersonalMedico pm in lstMedicos.Items)
                 {
                     rtbInfoMedico.Text = pm.FichaPersonal(pm);
                 }
             }
-                
+
+
+
         }
+            
+                
+        
     }
 }

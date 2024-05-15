@@ -20,8 +20,9 @@ namespace Biblioteca
         //Metodos
         internal override string FichaExtra()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();       
 
+            sb.AppendLine(base.ToString());
             sb.AppendLine($"¿Finalizó residencia? {this.esResidente}");
             sb.AppendLine("ATENCIONES: ");
             foreach (Consulta consulta in consultas)
